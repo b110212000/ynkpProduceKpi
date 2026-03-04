@@ -60,3 +60,46 @@ body {
         font-size: 2.5rem; /* 字體稍微縮小以免破版 */
     }
 }
+
+/* =========================================
+   第二頁 (投票與影片列表) 專用樣式
+   ========================================= */
+
+/* 投票橫幅 */
+.voting-banner {
+    /* 仿造草圖的淺藍/紫漸層背景 */
+    background: linear-gradient(135deg, #a6c0fe 0%, #8b9bf5 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+}
+
+/* 讓橫幅有被點擊或 hover 的互動感 */
+.voting-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Event 標籤 (沿用首頁按鈕的漸層色) */
+.event-badge {
+    background: linear-gradient(90deg, #67c5d4 0%, #3a7bd5 100%);
+    color: white;
+    font-size: 0.8rem;
+}
+
+/* 影片列表外框 */
+.video-list {
+    background-color: #18181a; /* 比純黑稍微灰一點，增加層次感 */
+}
+
+/* 影片縮圖佔位區塊 */
+.video-thumbnail {
+    width: 140px;
+    height: 80px;
+    background-color: #4a78d6; /* 仿造草圖的藍色方塊 */
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.video-thumbnail:hover {
+    opacity: 0.8; /* 滑鼠移過去時稍微變透明 */
+}
