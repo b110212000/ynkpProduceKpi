@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票頁面 - MY PICK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black">
+
+    <div class="app-container vh-100 d-flex flex-column position-relative overflow-hidden">
+        
+        <div class="d-flex justify-content-between align-items-center py-3 px-3 position-relative">
+            
+            <a href="javascript:history.back()" class="game-btn-nav text-decoration-none" style="z-index: 2;">
+                <span class="fw-bold me-1">◀</span> BACK
+            </a>
+            
+            <div class="position-absolute w-100 text-center start-0 text-white fs-5 fw-bold" style="z-index: 1; pointer-events: none; letter-spacing: 2px;">
+                投票
+            </div>
+            
+            <button type="button" id="openRuleBtn" class="game-btn-nav" style="z-index: 2;" data-bs-toggle="modal" data-bs-target="#voteRuleModal">
+                RULE <span class="fw-bold ms-1">?</span>
+            </button>
+            
+        </div>
+
+        <!-- <div class="d-flex px-4 mb-3 gap-4">
+            <div class="tab-item active">個人投票</div>
+            <div class="tab-item">MY PICK</div>
+        </div> -->
+
+        <div class="custom-dark-bg flex-grow-1 overflow-auto custom-scrollbar px-3 pt-4 pb-5">
+            <div class="row g-4 text-center">
+                
+                <div class="col-4">
+                    <div class="avatar-circle mx-auto mb-2"></div>
+                    <div class="text-white small fw-bold">PPL</div>
+                </div>
+                
+                <div class="col-4">
+                    <div class="avatar-circle mx-auto mb-2"></div>
+                    <div class="text-white small fw-bold">汪汪</div>
+                </div>
+                
+                <div class="col-4">
+                    <div class="avatar-circle mx-auto mb-2"></div>
+                    <div class="text-white small fw-bold">麵麵</div>
+                </div>
+
+                <div class="col-4">
+                    <div class="avatar-circle mx-auto mb-2"></div>
+                    <div class="text-white small fw-bold">米奇</div>
+                </div>
+                <div class="col-4">
+                    <div class="avatar-circle mx-auto mb-2"></div>
+                    <div class="text-white small fw-bold">紀維</div>
+                </div>
+                <div class="col-4">
+                    <div class="avatar-circle mx-auto mb-2"></div>
+                    <div class="text-white small fw-bold">阿阮</div>
+                </div>
+
+                </div>
+            
+            <div style="height: 100px;"></div>
+        </div>
+
+        <div class="sticky-bottom-wrapper">
+            <button type="button" class="btn custom-btn-blue w-100 d-flex flex-column align-items-center justify-content-center pt-3 pb-4 bottom-action-btn">
+                <span class="fw-bold fs-5">確認PICK的練習生</span>
+                <span class="small opacity-75 mt-1" style="font-size: 0.8rem;">請跳轉至下一頁完成投票</span>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="modal-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="page3.js"></script>
+</body>
+</html>

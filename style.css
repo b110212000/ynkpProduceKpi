@@ -192,3 +192,109 @@ body {
     background-color: #4a78d6;
     border-radius: 10px;
 }
+
+/* =========================================
+   投票列表頁專用樣式
+   ========================================= */
+
+/* 頂部切換標籤 (Tabs) */
+.tab-item {
+    color: #888888;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+}
+
+/* 啟動狀態的標籤 */
+.tab-item.active {
+    color: #4da3ff; /* 配合圖片的亮藍色 */
+    font-weight: bold;
+    /* 如果圖片中下方有底線，可以把下面這行取消註解 */
+    /* border-bottom: 2px solid #4da3ff; */
+}
+
+/* 中間大塊的深色背景 (只有上方有大圓角) */
+.custom-dark-bg {
+    background-color: #242424;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    position: relative;
+    /* 確保這塊背景在按鈕的下層 */
+    z-index: 1; 
+}
+
+/* 圓形頭像佔位符 */
+.avatar-circle {
+    width: 72px;  /* 可根據手機螢幕微調大小 */
+    height: 72px;
+    background-color: #a3bbfb; /* 圖片中的淺紫藍色 */
+    border-radius: 50%;
+    /* 加上一點微小的內陰影增加立體感 */
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+/* 點擊頭像的互動回饋 */
+.avatar-circle:active {
+    transform: scale(0.92);
+}
+
+/* 底部按鈕的絕對定位容器 */
+.sticky-bottom-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* 確保按鈕永遠浮在最上層 */
+}
+
+/* 底部滿版大按鈕 */
+.bottom-action-btn {
+    border-radius: 0; /* 取消預設圓角 */
+    border-top-left-radius: 28px; /* 只有上方有圓角，貼合圖片設計 */
+    border-top-right-radius: 28px;
+    /* 因為手機底部可能會有 Home Bar，所以 padding-bottom 設大一點 */
+}
+
+/* =========================================
+   遊戲感導覽按鈕 (現代手遊 / 電競 UI 風格)
+   ========================================= */
+.game-btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* 半透明的藍色科技感背景 */
+    background: linear-gradient(135deg, rgba(77, 163, 255, 0.15), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(77, 163, 255, 0.4); /* 微亮的邊框 */
+    color: #4da3ff; /* 亮藍色文字 */
+    font-size: 0.85rem;
+    font-weight: 800;
+    font-family: "Impact", "Arial Black", "Microsoft JhengHei", sans-serif; /* 粗體字型增加力量感 */
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 8px; /* 科技感的微圓角，不要太軟爛 */
+    box-shadow: 0 0 10px rgba(77, 163, 255, 0.1); /* 預設微微發光 */
+    backdrop-filter: blur(4px); /* 毛玻璃效果 */
+    /* 這裡加上了類似小遊戲物理彈跳的貝茲曲線動畫 */
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); 
+}
+
+/* 滑鼠游標移過去的霓虹發光效果 */
+.game-btn-nav:hover {
+    background: rgba(77, 163, 255, 0.3);
+    border-color: #4da3ff;
+    color: #ffffff;
+    /* 增加外發光與內發光，創造通電的感覺 */
+    box-shadow: 0 0 15px rgba(77, 163, 255, 0.6), inset 0 0 8px rgba(77, 163, 255, 0.3);
+    transform: translateY(-2px); /* 微微浮起 */
+}
+
+/* 點擊時的物理回饋感 (重要！遊戲感的靈魂) */
+.game-btn-nav:active {
+    transform: scale(0.92) translateY(0); /* 點擊時瞬間縮小並壓下去 */
+    box-shadow: 0 0 5px rgba(77, 163, 255, 0.4);
+    background: rgba(59, 130, 246, 0.4); /* 按下時顏色變深 */
+}

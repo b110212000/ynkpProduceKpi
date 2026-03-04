@@ -56,8 +56,3 @@ $(document).ready(function() {
         }
     });
 });
-
-$('#openRuleBtn').click(function() {
-    // 使用你記得的寫法：呼叫 .modal('show') 把視窗彈出來！
-    $('#voteRuleModal').modal('show');
-});
