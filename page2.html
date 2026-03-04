@@ -9,9 +9,9 @@
 </head>
 <body class="bg-black text-white vh-100">
 
-    <main class="app-container d-flex flex-column w-100 h-100">
+    <main class="app-container d-flex flex-column w-100 h-100 overflow-hidden">
         
-        <div class="p-3">
+        <div class="flex-shrink-0 p-3">
             <a href="#" class="voting-banner d-block text-decoration-none p-4 rounded-4 position-relative">
                 <h5 class="fw-bold mb-3 text-dark">請投票給你PICK的練習生</h5>
                 <div class="d-inline-block event-badge rounded-pill px-2 py-1 mb-2 fw-bold">Event</div>
@@ -19,27 +19,15 @@
             </a>
         </div>
 
-        <div class="video-list flex-grow-1 overflow-auto">
-            
-            <div class="video-item d-flex flex-column p-3 border-bottom border-secondary">
-                <div class="fw-bold mb-2">Produce KPI EP.1 Countdown</div>
-                <div class="video-thumbnail rounded-2"></div>
-            </div>
-
-            <div class="video-item d-flex flex-column p-3 border-bottom border-secondary">
-                <div class="fw-bold mb-2">Produce KPI 主題曲舞台</div>
-                <div class="video-thumbnail rounded-2"></div>
-            </div>
-
-            <div class="video-item d-flex flex-column p-3 border-bottom border-secondary">
-                <div class="fw-bold mb-2">Produce KPI EP.1 預告</div>
-                <div class="video-thumbnail rounded-2"></div>
-            </div>
-
+        <div class="video-list flex-grow-1 overflow-auto" id="video-container">
         </div>
 
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script src="page2.js"></script>
 </body>
 </html>

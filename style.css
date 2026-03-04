@@ -91,15 +91,57 @@ body {
     background-color: #18181a; /* 比純黑稍微灰一點，增加層次感 */
 }
 
-/* 影片縮圖佔位區塊 */
-.video-thumbnail {
-    width: 140px;
-    height: 80px;
-    background-color: #4a78d6; /* 仿造草圖的藍色方塊 */
-    transition: opacity 0.2s;
+/* =========================================
+   影片縮圖與排版樣式
+   ========================================= */
+
+/* 取代原本的 .video-thumbnail */
+.video-img {
+    width: 140px;      /* 保持與草圖相近的寬度 */
+    height: 79px;      /* YouTube 縮圖通常是 16:9，所以高度抓大約 79px */
+    object-fit: cover; /* 確保圖片填滿範圍，不會被拉長變形 */
     cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.video-thumbnail:hover {
-    opacity: 0.8; /* 滑鼠移過去時稍微變透明 */
+/* 點擊或滑鼠移過去時的微互動 */
+.video-img:hover {
+    opacity: 0.8;
+    transform: scale(1.02); /* 微微放大，增加點擊感 */
+}
+/* =========================================
+   客製化影片列表的捲軸樣式 (強制覆蓋版)
+   ========================================= */
+
+/* 支援 Firefox */
+.video-list {
+    scrollbar-width: thin;
+    scrollbar-color: #4a78d6 transparent;
+}
+
+/* 針對 WebKit 核心瀏覽器 (Chrome, Safari, Edge) */
+
+/* 1. 整個捲軸的寬度與背景 */
+.video-list::-webkit-scrollbar {
+    width: 6px !important;
+    background-color: transparent !important; /* 強制背景透明，消滅白底 */
+}
+
+/* 2. 捲軸的背景軌道 */
+.video-list::-webkit-scrollbar-track {
+    background-color: transparent !important; /* 強制軌道透明 */
+    box-shadow: none !important;              /* 去除任何預設的陰影 */
+}
+
+/* 3. 可拖曳的滑塊 (Thumb) */
+.video-list::-webkit-scrollbar-thumb {
+    background-color: #4a78d6 !important;     /* 強制指定藍色，消滅灰色 */
+    border-radius: 10px !important;
+    /* 加一個與影片列表背景相同的邊框，可以讓滑塊看起來更細緻、不貼邊 */
+    border: 1px solid #18181a !important;     
+}
+
+/* 4. 滑鼠移到滑塊上時的效果 */
+.video-list::-webkit-scrollbar-thumb:hover {
+    background-color: #67c5d4 !important;
 }
