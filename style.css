@@ -1,0 +1,62 @@
+/* 全局設定 */
+body {
+    /* 設定預設字體，確保中文顯示美觀 */
+    font-family: "PingFang TC", "Helvetica Neue", Helvetica, Arial, "Microsoft JhengHei", sans-serif;
+    /* 確保背景為純黑 */
+    background-color: #000;
+}
+
+/* App 主容器 (RWD 關鍵) */
+.app-container {
+    max-width: 480px; /* 限制最大寬度，模擬手機尺寸 */
+    margin: 0 auto;   /* 在大螢幕時水平置中 */
+}
+
+/* 主視覺藍色區塊 */
+.main-visual {
+    background-color: #6592d6; /* 仿造草圖中的藍色 */
+    position: relative;
+    /* 確保區塊有一定的高度比例 */
+    min-height: 60vh; 
+}
+
+/* 紅色「海報」手寫字 */
+.poster-text {
+    color: #e45c5c;
+    font-size: 1.5rem;
+    /* 使用草書或標楷體來模擬手寫感 */
+    font-family: 'Brush Script MT', cursive, "DFKai-SB", "BiauKai";
+    transform: rotate(-5deg); /* 微微傾斜，增加手寫的隨性感受 */
+}
+
+/* 客製化漸層按鈕 */
+.btn-custom {
+    /* 藍色到水藍色的漸層 */
+    background: linear-gradient(90deg, #67c5d4 0%, #3a7bd5 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+/* 按鈕 Hover 效果：模擬草圖中被粉紅色圈起來的感覺 */
+.btn-custom:hover {
+    color: white;
+    transform: scale(1.05); /* 滑鼠游標移過去時微微放大 */
+    box-shadow: 0 0 0 4px rgba(255, 20, 147, 0.6); /* 產生粉紅色的外發光圈 */
+}
+
+/* 紅色 "<- start" 文字 */
+.start-text {
+    color: #e45c5c;
+    font-size: 1.2rem;
+    font-family: 'Brush Script MT', cursive, "DFKai-SB", "BiauKai";
+    transform: rotate(-3deg);
+}
+
+/* RWD 微調：針對非常小的螢幕 (如 iPhone SE) */
+@media (max-width: 375px) {
+    .main-visual h1 {
+        font-size: 2.5rem; /* 字體稍微縮小以免破版 */
+    }
+}
