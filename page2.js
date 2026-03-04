@@ -47,4 +47,17 @@ $(document).ready(function() {
             $('#video-container').html('<p class="p-3 text-center text-secondary">無法載入影片資料，請確認是否透過本地伺服器 (Live Server) 開啟網頁。</p>');
         }
     });
+
+    $('#modal-container').load('modal.html', function(response, status, xhr) {
+        if (status == "error") {
+            console.error("載入 Modal 失敗: " + xhr.status + " " + xhr.statusText);
+        } else {
+            console.log("Modal 載入成功！");
+        }
+    });
+});
+
+$('#openRuleBtn').click(function() {
+    // 使用你記得的寫法：呼叫 .modal('show') 把視窗彈出來！
+    $('#voteRuleModal').modal('show');
 });
