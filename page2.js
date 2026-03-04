@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.ajax({
-        url: 'videos.csv',
+        url: 'video.csv',
         dataType: 'text',
         success: function(data) {
             const container = $('#video-container');
