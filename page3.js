@@ -7,6 +7,40 @@ $(document).ready(function() {
             console.log("Modal 載入成功！");
         }
     });
+
+    $.get('people.csv', function(csvData) {
+        
+        // 將 CSV 內容依照「換行符號」切成一行一行的陣列
+        let lines = csvData.split('\n');
+        let htmlContent = '';
+
+        // 使用迴圈讀取每一行 (從 i=1 開始，因為 i=0 是標題 'name,Image')
+        for(let i = 1; i < lines.length; i++) {
+            let line = lines[i].trim(); // 去除前後空白
+            
+            // 如果這行是空的就跳過 (避免讀到 CSV 最後一行的空行)
+            if(!line) continue;
+            
+            // 依照「逗號」把名字和圖片檔名切開
+            let cols = line.split(',');
+            let name = cols[0].trim();
+            let imageName = cols[1].trim();
+
+            // 組合 HTML 字串，並套用你的 images 資料夾路徑
+            htmlContent += `
+            <div class="col-4">
+                <img src="images/${imageName}" alt="${name}" class="avatar-circle mx-auto mb-2">
+                <div class="text-white small fw-bold">${name}</div>
+            </div>
+            `;
+        }
+
+        // 把組合好的 HTML 一次性塞進我們準備好的容器裡！
+        $('#candidate-list').html(htmlContent);
+        
+    }).fail(function() {
+        console.error("無法讀取 data.csv，請確認檔案是否存在，以及是否使用 Local Server 執行！");
+    });
 })
 
 $('#openRuleBtn').click(function() {
@@ -17,19 +51,15 @@ $('#openRuleBtn').click(function() {
 // =========================================
 // 練習生頭像 單選邏輯
 // =========================================
-$('.avatar-circle').click(function() {
-    
-    // 1. 清除所有人的選取狀態 (把 selected-avatar 這個 class 拔掉)
+$('#candidate-list').on('click', '.avatar-circle', function() {
+        
+    // 1. 清除所有人的選取狀態
     $('.avatar-circle').removeClass('selected-avatar');
     
     // 2. 只為當前被點擊的這個頭像加上選取狀態
     $(this).addClass('selected-avatar');
     
-    // 3. (進階實用) 抓取你選到了誰！
-    // 透過 .siblings() 找到旁邊的 div 文字，你就可以知道選到了誰
+    // 3. 抓取被選到的名字，並更新按鈕文字
     let selectedName = $(this).siblings('.text-white').text();
-    console.log("目前 PICK 的練習生是：" + selectedName);
-
-    // 你也可以順便把底部按鈕的文字動態換掉，讓使用者更有感！
     $('.bottom-action-btn .fs-5').text('確認 PICK：' + selectedName);
 });
