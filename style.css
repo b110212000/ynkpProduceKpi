@@ -298,3 +298,34 @@ body {
     box-shadow: 0 0 5px rgba(77, 163, 255, 0.4);
     background: rgba(59, 130, 246, 0.4); /* 按下時顏色變深 */
 }
+
+/* 圓形頭像 */
+.avatar-circle {
+    width: 72px;  
+    height: 72px;
+    background-color: #a3bbfb; /* 保留底色：如果照片破圖或還沒載入，會顯示這個漂亮的紫藍色 */
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    
+    /* 👇 新增這兩行 👇 */
+    object-fit: cover; /* 關鍵！這會像遮罩一樣，讓照片自動置中並裁切成完美圓形，絕不變形 */
+    display: block;    /* 確保 img 標籤的 margin: auto (mx-auto) 能夠正常運作置中 */
+}
+
+/* 點擊頭像的互動回饋 (維持不變) */
+.avatar-circle:active {
+    transform: scale(0.92);
+}
+
+/* =========================================
+   單選狀態的藍色發光外框
+   ========================================= */
+.selected-avatar {
+    /* 第一層是 4px 的實心亮藍色邊框，第二層是外圍的藍色霓虹光暈 */
+    box-shadow: 0 0 0 4px #3b82f6, 0 0 15px rgba(59, 130, 246, 0.8) !important;
+    transform: scale(1.08) !important; /* 選到時明顯放大 */
+    /* 為了讓縮放有平滑動畫，確保原本的 .avatar-circle 有設定 transition */
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Q彈縮放效果 */
+}
