@@ -363,10 +363,12 @@ body {
 }
 
 /* 證書上的練習生照片：方形帶一點圓角，類似拍立得風格 */
+/* 證書上的練習生照片 */
 .cert-avatar {
     width: 140px;
     height: 140px;
-    object-fit: cover;
+    object-fit: contain; /* 關鍵：保持原始比例，絕對不變形 */
+    background-color: #ffffff; /* 讓比例不合產生的空白處填滿白色 */
     border-radius: 16px;
     border: 3px solid #ffffff;
 }
