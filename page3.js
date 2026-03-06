@@ -96,7 +96,26 @@ $('#finalConfirmBtn').click(function() {
     sessionStorage.setItem('myPickName', selectedName);
     sessionStorage.setItem('myPickImg', selectedImgSrc);
 
-    // 3. 關閉 Modal，並跳轉到我們的證書頁面！
-    $('#confirmVoteModal').modal('hide');
-    window.location.href = "page4.html"; 
+    let googleScriptUrl = "https://script.google.com/macros/s/AKfycbxaF1lkoze4zc6DcYmcLIbfLc09QOF5m6rFxAIdga9lcoLmFbaRkhR8LV0MLrAL53_yfQ/exec";
+
+    // 改變按鈕狀態，讓使用者知道正在傳送中
+    let $btn = $(this);
+    $btn.text('投票傳送中...').prop('disabled', true);
+
+    // 透過 jQuery 發送請求給 Google
+    $.ajax({
+        // 在網址後面加上參數 ?pickName=xxx (例如：?pickName=多賢)
+        url: googleScriptUrl + "?pickName=" + encodeURIComponent(selectedName),
+        type: "GET",
+        success: function(response) {
+            // 傳送成功後，關閉 Modal，並跳轉到證書頁面
+            $('#confirmVoteModal').modal('hide');
+            window.location.href = "certificate.html"; 
+        },
+        error: function() {
+            // 萬一網路出錯的防呆機制
+            alert("投票傳送發生異常，請確認網路狀態後重試！");
+            $btn.text('確認').prop('disabled', false);
+        }
+    });
 });
