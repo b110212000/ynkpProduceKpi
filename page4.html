@@ -12,10 +12,6 @@
 
     <div class="app-container vh-100 d-flex flex-column position-relative overflow-auto pb-5">
         
-        <div class="d-flex justify-content-end p-3">
-            <a href="javascript:history.back()" class="text-dark text-decoration-none fs-3 fw-bold">&times;</a>
-        </div>
-
         <div class="px-4">
             <div id="certificateCard" class="cert-card p-4 mx-auto text-center position-relative overflow-hidden">
                 
@@ -41,8 +37,14 @@
 
         <div class="text-center mt-5 px-4">
             
+            <div id="resultContainer" class="text-center d-none mb-4">
+                <div class="alert alert-primary fw-bold py-2 px-1" role="alert" style="font-size: 0.9rem;">
+                    ✨ 證書產生成功！請「長按下方圖片」儲存到相簿 ✨
+                </div>
+                <img id="finalGeneratedImg" class="img-fluid shadow-lg rounded-4 border border-secondary" src="" alt="您的證書">
+            </div>
             <button id="downloadBtn" class="btn btn-light rounded-pill px-4 py-2 shadow-sm fw-bold border border-secondary mb-3">
-                <span class="fs-5 me-2">📥</span> 保存圖片
+                <span class="fs-5 me-2">✨</span> 生成我的證書
             </button>
 
             <p class="small text-muted mb-1">與話題超話一起分享投票證書吧！</p>
@@ -90,34 +92,38 @@
             // =========================================
             // 點擊「保存圖片」按鈕的截圖下載邏輯
             // =========================================
+            // =========================================
             $('#downloadBtn').click(function() {
-                // 把按鈕變成載入中狀態，防止狂按
                 let $btn = $(this);
                 let originalText = $btn.html();
                 $btn.html('<span class="spinner-border spinner-border-sm"></span> 產生圖片中...');
                 $btn.prop('disabled', true);
 
-                // 呼叫 html2canvas，對 #certificateCard 這個 div 進行「拍照」
                 html2canvas(document.querySelector("#certificateCard"), {
-                    scale: 3, // 提高截圖解析度，讓下載的圖片更清晰
-                    useCORS: true, // 允許跨域讀取圖片 (非常重要)
-                    backgroundColor: null // 保持背景透明度
+                    scale: 3, 
+                    useCORS: true, 
+                    backgroundColor: null 
                 }).then(canvas => {
-                    // 把畫布轉成圖片網址
+                    
+                    // 1. 把畫布轉成真正的圖片網址 (Data URL)
                     let imgData = canvas.toDataURL("image/png");
 
-                    // 建立隱藏的下載連結並觸發
-                    let link = document.createElement('a');
-                    link.href = imgData;
-                    link.download = pickName + '_投票證書.png';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    // 2. 🌟 關鍵改變：不要觸發隱藏下載！🌟
+                    // 把圖片網址塞給我們剛剛新增的 <img> 標籤
+                    $('#finalGeneratedImg').attr('src', imgData);
 
-                    // 恢復按鈕狀態
-                    $btn.html(originalText);
-                    $btn.prop('disabled', false);
-                    alert("下載成功！快去分享吧！");
+                    // 3. 隱藏原本用 HTML 刻的卡片跟下載按鈕
+                    $('#certificateCard').addClass('d-none');
+                    $btn.addClass('d-none');
+                    // 可以順便把那個「提示文字」也藏起來，讓畫面乾淨點
+                    $('.text-danger.fw-bold').addClass('d-none'); 
+
+                    // 4. 顯示結果區塊，讓使用者長按！
+                    $('#resultContainer').removeClass('d-none');
+
+                    // (如果需要，畫面可以自動捲動到圖片位置)
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+
                 }).catch(err => {
                     console.error("截圖失敗：", err);
                     alert("產生圖片失敗，請確認圖片來源安全性。");
