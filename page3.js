@@ -8,7 +8,9 @@ $(document).ready(function() {
         }
     });
 
-    $.get('people.csv', function(csvData) {
+    let googleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSJq2DTGgWg4lnoO2jsqWJfvNkF2o4k1Geg_JurLsvSIvsercYPi90wGGnwJ0-GsnsBKisfUEySglgh/pub?gid=2028933515&single=true&output=csv';
+
+    $.get(googleSheetUrl, function(csvData) {
         
         // 將 CSV 內容依照「換行符號」切成一行一行的陣列
         let lines = csvData.split('\n');
@@ -29,7 +31,7 @@ $(document).ready(function() {
             // 組合 HTML 字串，並套用你的 images 資料夾路徑
             htmlContent += `
             <div class="col-4">
-                <img src="images/${imageName}" alt="${name}" class="avatar-circle mx-auto mb-2">
+                <img src="${imageName}" alt="${name}" class="avatar-circle mx-auto mb-2">
                 <div class="text-white small fw-bold">${name}</div>
             </div>
             `;

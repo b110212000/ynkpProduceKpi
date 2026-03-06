@@ -1,6 +1,7 @@
 $(document).ready(function() {
+    let googleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSJq2DTGgWg4lnoO2jsqWJfvNkF2o4k1Geg_JurLsvSIvsercYPi90wGGnwJ0-GsnsBKisfUEySglgh/pub?gid=0&single=true&output=csv';
     $.ajax({
-        url: 'video.csv',
+        url: googleSheetUrl,
         dataType: 'text',
         success: function(data) {
             const container = $('#video-container');
