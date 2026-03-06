@@ -63,3 +63,36 @@ $('#candidate-list').on('click', '.avatar-circle', function() {
     let selectedName = $(this).siblings('.text-white').text();
     $('.bottom-action-btn .fs-5').text('確認 PICK：' + selectedName);
 });
+
+$('.bottom-action-btn').click(function() {
+    
+    // 1. 先檢查有沒有選人
+    let $selectedImg = $('.selected-avatar');
+    if ($selectedImg.length === 0) {
+        alert("請先點擊頭像選擇一位練習生喔！");
+        return;
+    }
+
+    // 2. 抓出剛剛選到的名字
+    let selectedName = $selectedImg.siblings('.text-white').text();
+
+    // 3. 把名字動態塞進我們剛剛寫好的 Modal 裡面
+    $('#confirmCandidateName').text(selectedName);
+
+    // 4. 把確認 Modal 彈出來！
+    $('#confirmVoteModal').modal('show');
+});
+
+$('#finalConfirmBtn').click(function() {
+        
+    // 1. 先把 Modal 關掉
+    $('#confirmVoteModal').modal('hide');
+
+    // 2. 這裡放你真正要執行的動作！
+    // 例如：跳轉到感謝投票的頁面
+    // window.location.href = "success.html";
+    
+    // 或者：執行上一篇我們寫的 Canvas 下載認證照功能
+    alert("投票成功！"); 
+    
+});

@@ -329,3 +329,22 @@ body {
     /* 為了讓縮放有平滑動畫，確保原本的 .avatar-circle 有設定 transition */
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Q彈縮放效果 */
 }
+
+/* =========================================
+   取消/次要按鈕樣式
+   ========================================= */
+.custom-btn-cancel {
+    background-color: #3f3f46 !important; /* 深灰色，不會搶走主按鈕的視覺焦點 */
+    color: #d4d4d8 !important; /* 淺灰文字 */
+    border: none !important;
+    transition: all 0.2s ease;
+}
+
+.custom-btn-cancel:hover {
+    background-color: #52525b !important; /* 滑鼠移過稍微變亮 */
+    color: #ffffff !important;
+}
+
+.custom-btn-cancel:active {
+    transform: scale(0.96); /* 一樣保留 Q 彈的點擊回饋 */
+}
