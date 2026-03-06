@@ -377,3 +377,11 @@ body {
     border-radius: 16px;
     border: 3px solid #ffffff;
 }
+
+/* 強制允許手機長按跳出選單 (對抗 Line / IG 內建瀏覽器) */
+#finalGeneratedImg {
+    -webkit-touch-callout: default !important; /* 強制喚醒長按選單 */
+    -webkit-user-select: auto !important;      /* 允許選取 */
+    user-select: auto !important;
+    pointer-events: auto !important;           /* 確保點擊事件能穿透 */
+}
