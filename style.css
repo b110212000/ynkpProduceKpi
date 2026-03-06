@@ -365,13 +365,15 @@ body {
 /* 證書上的練習生照片：方形帶一點圓角，類似拍立得風格 */
 /* 證書上的練習生照片 */
 /* 修改後的證書照片樣式 (解決截圖變形 Bug) */
+/* 修改後的證書照片樣式 */
 .cert-avatar {
     width: 140px;
     height: 140px;
-    background-color: #ffffff;     /* 讓比例不合產生的空白處填滿白色 */
-    background-size: contain;      /* 完美取代 object-fit: contain，保證不變形 */
-    background-position: center;   /* 讓圖片絕對置中 */
-    background-repeat: no-repeat;  /* 防止圖片太小導致重複拼貼 */
+    margin: 0 auto;                /* 🌟 加上這行！讓區塊水平置中 🌟 */
+    background-color: #ffffff;     
+    background-size: contain;      
+    background-position: center;   
+    background-repeat: no-repeat;  
     border-radius: 16px;
     border: 3px solid #ffffff;
 }
