@@ -110,7 +110,7 @@ $('#finalConfirmBtn').click(function() {
         success: function(response) {
             // 傳送成功後，關閉 Modal，並跳轉到證書頁面
             $('#confirmVoteModal').modal('hide');
-            window.location.href = "certificate.html"; 
+            window.location.href = "page4.html"; 
         },
         error: function() {
             // 萬一網路出錯的防呆機制
