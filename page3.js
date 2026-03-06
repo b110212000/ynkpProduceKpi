@@ -84,15 +84,17 @@ $('.bottom-action-btn').click(function() {
 });
 
 $('#finalConfirmBtn').click(function() {
-        
-    // 1. 先把 Modal 關掉
-    $('#confirmVoteModal').modal('hide');
+    
+    // 1. 抓取剛剛選到的名字和照片的 src
+    let selectedName = $('#confirmCandidateName').text();
+    let selectedImgSrc = $('.selected-avatar').attr('src');
 
-    // 2. 這裡放你真正要執行的動作！
-    // 例如：跳轉到感謝投票的頁面
-    // window.location.href = "success.html";
-    
-    // 或者：執行上一篇我們寫的 Canvas 下載認證照功能
-    alert("投票成功！"); 
-    
+    // 2. 把資料存進瀏覽器的「網頁暫存 (sessionStorage)」裡
+    // 這樣就算跳轉到下一頁，資料也不會不見！
+    sessionStorage.setItem('myPickName', selectedName);
+    sessionStorage.setItem('myPickImg', selectedImgSrc);
+
+    // 3. 關閉 Modal，並跳轉到我們的證書頁面！
+    $('#confirmVoteModal').modal('hide');
+    window.location.href = "page4.html"; 
 });

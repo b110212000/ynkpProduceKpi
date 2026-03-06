@@ -348,3 +348,25 @@ body {
 .custom-btn-cancel:active {
     transform: scale(0.96); /* 一樣保留 Q 彈的點擊回饋 */
 }
+
+/* =========================================
+   投票證書專用樣式
+   ========================================= */
+
+/* 證書卡片本體：漸層背景、圓角、陰影 */
+.cert-card {
+    background: linear-gradient(180deg, #d3c4ff 0%, #fefdff 60%, #ffeaf7 100%);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    /* 如果背景是白色的，加上這個可以讓卡片感覺浮起來 */
+}
+
+/* 證書上的練習生照片：方形帶一點圓角，類似拍立得風格 */
+.cert-avatar {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 3px solid #ffffff;
+}

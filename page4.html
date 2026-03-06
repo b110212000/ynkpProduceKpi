@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票證書</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body class="bg-light">
+
+    <div class="app-container vh-100 d-flex flex-column position-relative overflow-auto pb-5">
+        
+        <div class="d-flex justify-content-end p-3">
+            <a href="javascript:history.back()" class="text-dark text-decoration-none fs-3 fw-bold">&times;</a>
+        </div>
+
+        <div class="px-4">
+            <div id="certificateCard" class="cert-card p-4 mx-auto text-center position-relative overflow-hidden">
+                
+                <h4 class="fw-bold mt-2 mb-1" style="letter-spacing: 2px;">投票證書</h4>
+                <p class="text-danger small fw-bold mb-4">✔️ 1輪, 投票認證書</p>
+
+                <img id="certImg" src="" alt="Trainee" class="cert-avatar mb-3 shadow-sm" crossorigin="anonymous">
+
+                <p class="small text-muted mb-1">Final Global 1st Vote</p>
+                <h3 id="certName" class="fw-bold mb-4"></h3>
+
+                <div class="d-flex justify-content-between align-items-center border-top border-secondary pt-3 mt-2">
+                    <span class="small text-muted">參與日期</span>
+                    <span id="certDate" class="fw-bold small px-2 py-1 rounded" style="background: rgba(255,255,255,0.6);"></span>
+                </div>
+
+                <div class="text-start mt-3">
+                    <p class="small text-muted mb-0" style="font-size: 0.7rem;">本認證書由 Produce KPI 官方頒發。</p>
+                    <p class="small text-muted mb-0" style="font-size: 0.6rem; opacity: 0.7;">No. M-UxIuOeBztKF5g8l9YzPhq1</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5 px-4">
+            
+            <button id="downloadBtn" class="btn btn-light rounded-pill px-4 py-2 shadow-sm fw-bold border border-secondary mb-3">
+                <span class="fs-5 me-2">📥</span> 保存圖片
+            </button>
+
+            <p class="small text-muted mb-1">與話題超話一起分享投票證書吧！</p>
+            <p class="small text-primary fw-bold mb-2">
+                #ProduceKPI #FinalGlobal1stVote #PickMe
+                <span style="cursor: pointer;" onclick="alert('標籤已複製！')">📋</span>
+            </p>
+            <p class="text-danger fw-bold" style="font-family: 'Brush Script MT', 'DFKai-SB', 'BiauKai'; transform: rotate(-2deg);">
+                提示文字：掰就掰，波了記得存
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            
+            // 1. 從 sessionStorage 拿出剛才存的資料
+            let pickName = sessionStorage.getItem('myPickName');
+            let pickImg = sessionStorage.getItem('myPickImg');
+
+            // 如果沒抓到資料(可能使用者是直接輸入網址進來的)，就退回投票頁
+            if(!pickName || !pickImg) {
+                alert("找不到投票紀錄，將為您導回首頁！");
+                window.location.href = "voting.html";
+                return;
+            }
+
+            // 2. 把資料塞進證書的 HTML 裡
+            $('#certName').text(pickName);
+            $('#certImg').attr('src', pickImg);
+
+            // 3. 產生現在的日期與時間 (格式：YYYY.MM.DD HH:mm)
+            let now = new Date();
+            let dateStr = now.getFullYear() + '.' + 
+                          String(now.getMonth() + 1).padStart(2, '0') + '.' + 
+                          String(now.getDate()).padStart(2, '0') + ' ' +
+                          String(now.getHours()).padStart(2, '0') + ':' +
+                          String(now.getMinutes()).padStart(2, '0');
+            $('#certDate').text(dateStr);
+
+            // =========================================
+            // 點擊「保存圖片」按鈕的截圖下載邏輯
+            // =========================================
+            $('#downloadBtn').click(function() {
+                // 把按鈕變成載入中狀態，防止狂按
+                let $btn = $(this);
+                let originalText = $btn.html();
+                $btn.html('<span class="spinner-border spinner-border-sm"></span> 產生圖片中...');
+                $btn.prop('disabled', true);
+
+                // 呼叫 html2canvas，對 #certificateCard 這個 div 進行「拍照」
+                html2canvas(document.querySelector("#certificateCard"), {
+                    scale: 3, // 提高截圖解析度，讓下載的圖片更清晰
+                    useCORS: true, // 允許跨域讀取圖片 (非常重要)
+                    backgroundColor: null // 保持背景透明度
+                }).then(canvas => {
+                    // 把畫布轉成圖片網址
+                    let imgData = canvas.toDataURL("image/png");
+
+                    // 建立隱藏的下載連結並觸發
+                    let link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = pickName + '_投票證書.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    // 恢復按鈕狀態
+                    $btn.html(originalText);
+                    $btn.prop('disabled', false);
+                    alert("下載成功！快去分享吧！");
+                }).catch(err => {
+                    console.error("截圖失敗：", err);
+                    alert("產生圖片失敗，請確認圖片來源安全性。");
+                    $btn.html(originalText);
+                    $btn.prop('disabled', false);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
