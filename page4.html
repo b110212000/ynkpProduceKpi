@@ -65,13 +65,13 @@
         $(document).ready(function() {
             
             // 1. 從 sessionStorage 拿出剛才存的資料
-            let pickName = sessionStorage.getItem('myPickName');
-            let pickImg = sessionStorage.getItem('myPickImg');
+            let pickName = localStorage.getItem('myPickName');
+            let pickImg = localStorage.getItem('myPickImg');
 
             // 如果沒抓到資料(可能使用者是直接輸入網址進來的)，就退回投票頁
             if(!pickName || !pickImg) {
                 alert("找不到投票紀錄，將為您導回首頁！");
-                window.location.href = "voting.html";
+                window.location.href = "index.html";
                 return;
             }
 

@@ -33,6 +33,29 @@
         </div> -->
 
         <div class="custom-dark-bg flex-grow-1 overflow-auto custom-scrollbar px-3 pt-4 pb-5">
+
+            <div id="notOpenContainer" class="text-center d-none pt-5 px-3">
+                <div class="fs-1 mb-3">⏳</div> 
+                <h3 class="text-white fw-bold mb-3">目前非投票開放時間</h3>
+                <p class="text-white-50 mb-4" id="voteTimeMessage">
+                    請留意官方公告，下一輪投票即將展開，敬請期待！
+                </p>
+                <a href="index.html" class="btn btn-outline-light rounded-pill px-4">回首頁</a>
+            </div>
+
+            <div id="alreadyVotedContainer" class="text-center d-none pt-5 px-3">
+                <img src="images/stop.png" alt="已投票" class="img-fluid mb-4" style="max-width: 90%;">
+                
+                <h3 class="text-white fw-bold mb-3">您已完成本輪投票！</h3>
+                <p class="text-white-50 mb-4">
+                    每人每輪限投一次，感謝您的熱情參與！<br>
+                    快去查看或下載您的專屬認證照吧 ✨
+                </p>
+                
+                <a href="page4.html" class="btn btn-light rounded-pill py-2 px-4 fw-bold shadow">
+                    查看我的證書
+                </a>
+            </div>
             
             <div class="row g-4 text-center" id="candidate-list"></div>
             
