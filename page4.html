@@ -18,7 +18,7 @@
                 <h4 class="fw-bold mt-2 mb-1" style="letter-spacing: 2px;">投票證書</h4>
                 <p class="text-danger small fw-bold mb-4">✔️ 1輪, 投票認證書</p>
 
-                <img id="certImg" src="" alt="Trainee" class="cert-avatar mb-3 shadow-sm" crossorigin="anonymous">
+                <div id="certImg" class="cert-avatar mb-3 shadow-sm"></div>
 
                 <p class="small text-muted mb-1">Final Global 1st Vote</p>
                 <h3 id="certName" class="fw-bold mb-4"></h3>
@@ -39,7 +39,8 @@
             
             <div id="resultContainer" class="text-center d-none mb-4">
                 <div class="alert alert-primary fw-bold py-2 px-1" role="alert" style="font-size: 0.9rem;">
-                    ✨ 證書產生成功！請「長按下方圖片」儲存到相簿 ✨
+                    ✨ 證書產生成功！ ✨ <br>
+                    請「長按下方圖片」儲存到相簿
                 </div>
                 <img id="finalGeneratedImg" class="img-fluid shadow-lg rounded-4 border border-secondary" src="" alt="您的證書">
             </div>
@@ -47,13 +48,8 @@
                 <span class="fs-5 me-2">✨</span> 生成我的證書
             </button>
 
-            <p class="small text-muted mb-1">與話題超話一起分享投票證書吧！</p>
-            <p class="small text-primary fw-bold mb-2">
-                #ProduceKPI #FinalGlobal1stVote #PickMe
-                <span style="cursor: pointer;" onclick="alert('標籤已複製！')">📋</span>
-            </p>
             <p class="text-danger fw-bold" style="font-family: 'Brush Script MT', 'DFKai-SB', 'BiauKai'; transform: rotate(-2deg);">
-                提示文字：掰就掰，波了記得存
+                提示文字：掰掰就掰掰，所以記得存
             </p>
 
         </div>
@@ -78,7 +74,7 @@
 
             // 2. 把資料塞進證書的 HTML 裡
             $('#certName').text(pickName);
-            $('#certImg').attr('src', pickImg);
+            $('#certImg').css('background-image', 'url(' + pickImg + ')');
 
             // 3. 產生現在的日期與時間 (格式：YYYY.MM.DD HH:mm)
             let now = new Date();
