@@ -68,74 +68,65 @@
     
     <script>
         $(document).ready(function() {
+        
+        let pickName = sessionStorage.getItem('myPickName');
+        let pickImg = sessionStorage.getItem('myPickImg');
+
+        if(!pickName || !pickImg) {
+            alert("找不到投票紀錄，將為您導回首頁！");
+            window.location.href = "voting.html";
+            return;
+        }
+
+        $('#certName').text(pickName);
+        
+        // ... (日期產生邏輯保持不變) ...
+
+        // =========================================
+        // 🌟 自動生成的關鍵：監聽圖片的載入完成事件 🌟
+        // =========================================
+        let $certImg = $('#certImg');
+        
+        // 1. 綁定 load 事件：當這張圖片確認從網路下載完畢、顯示出來的那一刻，再執行截圖！
+        $certImg.on('load', function() {
             
-            // 1. 從 sessionStorage 拿出剛才存的資料
-            let pickName = sessionStorage.getItem('myPickName');
-            let pickImg = sessionStorage.getItem('myPickImg');
-
-            // 如果沒抓到資料(可能使用者是直接輸入網址進來的)，就退回投票頁
-            if(!pickName || !pickImg) {
-                alert("找不到投票紀錄，將為您導回首頁！");
-                window.location.href = "voting.html";
-                return;
-            }
-
-            // 2. 把資料塞進證書的 HTML 裡
-            $('#certName').text(pickName);
-            $('#certImg').attr('src', pickImg);
-
-            // 3. 產生現在的日期與時間 (格式：YYYY.MM.DD HH:mm)
-            let now = new Date();
-            let dateStr = now.getFullYear() + '.' + 
-                          String(now.getMonth() + 1).padStart(2, '0') + '.' + 
-                          String(now.getDate()).padStart(2, '0') + ' ' +
-                          String(now.getHours()).padStart(2, '0') + ':' +
-                          String(now.getMinutes()).padStart(2, '0');
-            $('#certDate').text(dateStr);
-
-            // =========================================
-            // 點擊「保存圖片」按鈕的截圖下載邏輯
-            // =========================================
-            // =========================================
-            $('#downloadBtn').click(function() {
-                let $btn = $(this);
-                let originalText = $btn.html();
-                $btn.html('<span class="spinner-border spinner-border-sm"></span> 產生圖片中...');
-                $btn.prop('disabled', true);
-
+            // 為了確保字體也都載入完畢，稍微延遲 0.5 秒再拍 (創造一點處理中的感覺)
+            setTimeout(function() {
+                
                 html2canvas(document.querySelector("#certificateCard"), {
                     scale: 3, 
                     useCORS: true, 
                     backgroundColor: null 
                 }).then(canvas => {
-                    
-                    // 1. 把畫布轉成真正的圖片網址 (Data URL)
                     let imgData = canvas.toDataURL("image/png");
-
-                    // 2. 🌟 關鍵改變：不要觸發隱藏下載！🌟
-                    // 把圖片網址塞給我們剛剛新增的 <img> 標籤
                     $('#finalGeneratedImg').attr('src', imgData);
 
-                    // 3. 隱藏原本用 HTML 刻的卡片跟下載按鈕
+                    // 隱藏 HTML 卡片，顯示真正的圖片
                     $('#certificateCard').addClass('d-none');
-                    $btn.addClass('d-none');
-                    // 可以順便把那個「提示文字」也藏起來，讓畫面乾淨點
-                    $('.text-danger.fw-bold').addClass('d-none'); 
-
-                    // 4. 顯示結果區塊，讓使用者長按！
                     $('#resultContainer').removeClass('d-none');
 
-                    // (如果需要，畫面可以自動捲動到圖片位置)
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                }).catch(err => {
-                    console.error("截圖失敗：", err);
-                    alert("產生圖片失敗，請確認圖片來源安全性。");
-                    $btn.html(originalText);
-                    $btn.prop('disabled', false);
+                    // 判斷手機或電腦，給予不同提示字或自動下載
+                    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                    if (isMobile) {
+                        $('#saveInstruction').html('✨ 證書產生成功！ ✨<br>請「長按下方圖片」儲存到相簿');
+                    } else {
+                        $('#saveInstruction').html('✨ 證書產生成功！ ✨<br>檔案已自動下載，或可「點擊右鍵 ➔ 另存圖片」');
+                        let link = document.createElement('a');
+                        link.href = imgData;
+                        link.download = pickName + '_投票證書.png';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
                 });
-            });
+
+            }, 500); // 延遲 500 毫秒
+
         });
+
+        // 2. 把照片網址塞給 img 標籤，這會觸發圖片開始下載，下載完就會觸發上面的 load 事件
+        $certImg.attr('src', pickImg);
+    });
     </script>
 </body>
 </html>
