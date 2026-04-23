@@ -68,9 +68,24 @@ body {
 /* 投票橫幅 */
 .voting-banner {
     /* 仿造草圖的淺藍/紫漸層背景 */
-    background: linear-gradient(135deg, #a6c0fe 0%, #8b9bf5 100%);
+    background-image: url('images/starback10.png'); /* 如果圖片在 images 資料夾下，請改為 url('images/star-back-10.png') */
+    background-size: cover;     /* 讓圖片等比例縮放並填滿整個橫幅 */
+    background-position: center;  /* 讓圖片保持置中，確保星星圖案能完美顯示 */
+    background-repeat: no-repeat; /* 防止圖片重複拼貼 */
+
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     transition: transform 0.2s ease;
+
+    min-height: 150px; /* 強制給予一個最低高度，確保星星能露出來 (可依喜好微調 140px~160px) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 讓文字在擴大的空間裡保持垂直置中 */
+}
+
+.voting-banner h4,
+.voting-banner p {
+    font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", sans-serif;
+    font-weight: 900; /* 標題可以設定到 900 讓它更飽滿粗壯 */
 }
 
 /* 讓橫幅有被點擊或 hover 的互動感 */
@@ -429,4 +444,32 @@ body {
     margin-right: 5px;
     position: relative;
     top: -1px; /* 微調讓箭頭跟文字在視覺上完美對齊 */
+}
+
+/* =========================================
+   橫幅右下角：查看規則按鈕
+   ========================================= */
+.rules-banner-btn {
+    background-color: #b9d0f0; /* 淺藍色背景 */
+    color: #273b69; /* 深藍色文字 (與星星同色系) */
+    border: none;
+    border-radius: 8px; /* 微圓角矩形 */
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", sans-serif;
+    font-weight: 800;
+}
+
+/* 滑鼠懸停效果 */
+.rules-banner-btn:hover {
+    background-color: #a4bfdf; /* 稍微變深的藍色 */
+    color: #1a2849;
+    transform: scale(1.05); /* 微微放大 */
+}
+
+/* 點擊時的微縮效果 */
+.rules-banner-btn:active {
+    transform: scale(0.95);
 }
