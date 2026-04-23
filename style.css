@@ -385,3 +385,48 @@ body {
     user-select: auto !important;
     pointer-events: auto !important;           /* 確保點擊事件能穿透 */
 }
+
+/* =========================================
+   膠囊狀透明導覽按鈕 (Pill-shaped Transparent Buttons)
+   ========================================= */
+.pill-btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; /* 透明背景 */
+    /* 使用與圖片相符的柔和灰藍色，可自行微調色碼 */
+    border: 3.5px solid #7a93c8; 
+    color: #7a93c8; 
+    border-radius: 15px; /* 數值設很大，確保左右兩側是完美的半圓 */
+    padding: 6px 16px; /* 控制按鈕的寬高比例 */
+    font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none !important;
+    letter-spacing: 1px;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+    cursor: pointer;
+    /* 取消 Bootstrap button 預設的外框 */
+    outline: none; 
+}
+
+/* 滑鼠移過去的微亮效果 */
+.pill-btn-nav:hover {
+    color: #92abdd;
+    border-color: #92abdd;
+}
+
+/* 點擊時的物理回饋感 */
+.pill-btn-nav:active {
+    transform: scale(0.92);
+    /* 點擊時加一點微光背景，增加回饋感 */
+    background-color: rgba(122, 147, 200, 0.2); 
+}
+
+/* 針對返回箭頭的微調 */
+.pill-btn-nav .icon {
+    font-size: 0.9rem;
+    margin-right: 5px;
+    position: relative;
+    top: -1px; /* 微調讓箭頭跟文字在視覺上完美對齊 */
+}
