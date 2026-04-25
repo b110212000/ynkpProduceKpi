@@ -77,7 +77,7 @@
 
             // 2. 把資料塞進證書的 HTML 裡
             $('#certName').text(pickName);
-            $('#certImg').css('background-image', 'url(' + pickImg + ')');
+            $('#certImg').css('background-image', `url('${pickImg}')`);
 
             // 3. 產生現在的日期與時間 (格式：YYYY.MM.DD HH:mm)
             let now = new Date();
