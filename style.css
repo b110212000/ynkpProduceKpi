@@ -570,7 +570,7 @@ body {
     /* 字體設定：粗圓體 */
     font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", sans-serif;
     font-weight: 900;
-    font-size: 1.5rem; /* 字體稍微大一點，更有入口按鈕的氣勢 */
+    font-size: 1.3rem; /* 字體稍微大一點，更有入口按鈕的氣勢 */
     letter-spacing: 2px;
     
     /* 形狀與間距 */
