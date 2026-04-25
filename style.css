@@ -473,3 +473,87 @@ body {
 .rules-banner-btn:active {
     transform: scale(0.95);
 }
+
+/* =========================================
+   「開始投票」專屬星星按鈕
+   ========================================= */
+.custom-btn-start {
+    background-color: #7992cb !important; /* 圖片中的莫蘭迪藍色 */
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px !important; /* 圓角設定 */
+    /* 套用我們之前設定好的Ｑ彈圓體 */
+    font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", sans-serif;
+    font-size: 1.25rem;
+    
+    /* 🌟 核心排版技巧：讓星星靠邊，文字居中 🌟 */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding-left: 24px; /* 控制左邊星星距離邊緣的空間 */
+    padding-right: 24px; /* 控制右邊星星距離邊緣的空間 */
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 加上一點微陰影增加層次 */
+    transition: all 0.2s ease;
+}
+
+/* 點擊時的物理回饋感 */
+.custom-btn-start:active {
+    transform: scale(0.96);
+    background-color: #6a83bc !important; /* 點下去稍微變深 */
+}
+
+/* 星星的專屬顏色與大小 */
+.custom-btn-start .star-icon {
+    color: #e5deb2; /* 圖片中的淺黃/米色 */
+    font-size: 1.5rem;
+    line-height: 1;
+    /* 因為星星符號有時視覺中心偏高，用 relative 微微往下壓對齊文字 */
+    position: relative;
+    top: -2px; 
+}
+
+/* 中間文字的設定 */
+.custom-btn-start .btn-text {
+    letter-spacing: 2px; /* 讓字距稍微拉開，更好看 */
+    font-weight: 900;
+}
+
+/* =========================================
+   「確認PICK」底部專屬星星按鈕
+   ========================================= */
+.custom-btn-confirm-pick {
+    background-color: #7992cb !important; /* 莫蘭迪藍色 */
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 16px !important; /* 讓四個角都變成圓角，符合圖片樣式 */
+    font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", sans-serif;
+    
+    /* 排版魔法：星星靠兩邊、文字置中 */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 16px 24px !important; /* 讓按鈕高度大一點，更好點擊 */
+    
+    transition: all 0.2s ease;
+}
+
+/* 點擊時的微縮回饋 */
+.custom-btn-confirm-pick:active {
+    transform: scale(0.96);
+    background-color: #6a83bc !important;
+}
+
+/* 🌟 深藍色星星設定 🌟 */
+.custom-btn-confirm-pick .star-icon {
+    color: #3b507d; /* 圖片中的深藍色星星 */
+    font-size: 1.5rem;
+    position: relative;
+    top: -2px; 
+}
+
+/* 中間文字設定 */
+.custom-btn-confirm-pick .btn-text {
+    letter-spacing: 1px;
+    font-weight: 900;
+}
