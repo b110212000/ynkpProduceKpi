@@ -104,7 +104,13 @@
                     scale: 3, 
                     useCORS: true, 
                     backgroundColor: null,
-                    logging: false
+                    logging: false,
+                    onclone: (clonedDoc) => {
+                        const img = clonedDoc.querySelector("#certImg");
+                        if (img) {
+                            img.style.objectFit = "cover"; // 雙重保險
+                        }
+                    }
                 }).then(canvas => {
                     
                     // 1. 把畫布轉成真正的圖片網址 (Data URL)
