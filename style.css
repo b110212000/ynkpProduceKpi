@@ -557,3 +557,40 @@ body {
     letter-spacing: 1px;
     font-weight: 900;
 }
+
+/* =========================================
+   首頁專屬「START」按鈕
+   ========================================= */
+.btn-start-home {
+    display: inline-block;
+    background-color: #7992cb; /* 莫蘭迪藍色 */
+    color: #ffffff !important;
+    text-decoration: none;
+    
+    /* 字體設定：粗圓體 */
+    font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem; /* 字體稍微大一點，更有入口按鈕的氣勢 */
+    letter-spacing: 2px;
+    
+    /* 形狀與間距 */
+    padding: 12px 40px; /* 上下12px，左右40px，撐出寬扁的飽滿感 */
+    border-radius: 20px; /* 大圓角矩形，符合圖片的圓潤感 */
+    
+    /* 陰影與過場動畫 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 滑鼠移過去稍微變亮浮起 */
+.btn-start-home:hover {
+    background-color: #8aa3db;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 點擊時的物理 Q 彈回饋 */
+.btn-start-home:active {
+    transform: scale(0.92) translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
