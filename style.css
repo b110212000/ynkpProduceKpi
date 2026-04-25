@@ -386,7 +386,8 @@ body {
     height: 140px;
     margin: 0 auto;                /* 🌟 加上這行！讓區塊水平置中 🌟 */
     background-color: #ffffff;     
-    background-size: contain;      
+    background-size: cover;      
+    object-fit: cover;
     background-position: center;   
     background-repeat: no-repeat;  
     border-radius: 16px;

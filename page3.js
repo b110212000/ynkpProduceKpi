@@ -156,7 +156,7 @@ $('#finalConfirmBtn').click(function() {
     // 2. 把資料存進瀏覽器的「網頁暫存 (sessionStorage)」裡
     // 這樣就算跳轉到下一頁，資料也不會不見！
     localStorage.setItem('myPickName', selectedName);
-    localStorage.setItem('myPickImg', selectedImgSrc);
+    localStorage.setItem('myPickImg', 'ori' + selectedImgSrc);
     localStorage.setItem('voted_round_' + currentVoteRound, 'true');
 
     let googleScriptUrl = "https://script.google.com/macros/s/AKfycbxaF1lkoze4zc6DcYmcLIbfLc09QOF5m6rFxAIdga9lcoLmFbaRkhR8LV0MLrAL53_yfQ/exec";
