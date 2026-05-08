@@ -18,6 +18,7 @@ body {
     position: relative;
     /* 確保區塊有一定的高度比例 */
     min-height: 60vh; 
+    background-image: url('images/sysShow.png');
 }
 
 /* 紅色「海報」手寫字 */
