@@ -19,6 +19,9 @@ body {
     /* 確保區塊有一定的高度比例 */
     min-height: 60vh; 
     background-image: url('images/sysShow.png');
+    background-size: cover;      /* 讓圖片依比例縮放，直到完全覆蓋容器 */
+    background-position: center; /* 讓圖片居中，避免只看到左上角 */
+    background-repeat: no-repeat; /* 防止圖片重複出現 */
 }
 
 /* 紅色「海報」手寫字 */
