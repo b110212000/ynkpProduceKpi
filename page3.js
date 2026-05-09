@@ -170,7 +170,7 @@ $('#finalConfirmBtn').click(function() {
     localStorage.setItem('voted_round_' + currentVoteRound, 'true');
     localStorage.setItem('randon_no', randon_no);
 
-    let googleScriptUrl = "https://script.google.com/macros/s/AKfycbxuMbZoRYFHY2bAfg79Gt3u7HY4yJHvYbgi6ZXW5XSSeHlveE33yWOtg4VyrdcdxO-xfw/exec";
+    let googleScriptUrl = "https://script.google.com/macros/s/AKfycbxaF1lkoze4zc6DcYmcLIbfLc09QOF5m6rFxAIdga9lcoLmFbaRkhR8LV0MLrAL53_yfQ/exec";
 
     // 改變按鈕狀態，讓使用者知道正在傳送中
     let $btn = $(this);
