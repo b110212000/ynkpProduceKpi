@@ -147,17 +147,28 @@ $('.bottom-action-btn').click(function() {
     $('#confirmVoteModal').modal('show');
 });
 
+function generateRandomCode(length = 6) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
 $('#finalConfirmBtn').click(function() {
     
     // 1. 抓取剛剛選到的名字和照片的 src
     let selectedName = $('#confirmCandidateName').text();
     let selectedImgSrc = $('.selected-avatar').attr('src');
+    let randon_no = generateRandomCode(6)
 
     // 2. 把資料存進瀏覽器的「網頁暫存 (sessionStorage)」裡
     // 這樣就算跳轉到下一頁，資料也不會不見！
     localStorage.setItem('myPickName', selectedName);
     localStorage.setItem('myPickImg', 'ori' + selectedImgSrc);
     localStorage.setItem('voted_round_' + currentVoteRound, 'true');
+    localStorage.setItem('randon_no', randon_no);
 
     let googleScriptUrl = "https://script.google.com/macros/s/AKfycbxaF1lkoze4zc6DcYmcLIbfLc09QOF5m6rFxAIdga9lcoLmFbaRkhR8LV0MLrAL53_yfQ/exec";
 
@@ -165,10 +176,11 @@ $('#finalConfirmBtn').click(function() {
     let $btn = $(this);
     $btn.text('投票傳送中...').prop('disabled', true);
 
+
     // 透過 jQuery 發送請求給 Google
     $.ajax({
         // 在網址後面加上參數 ?pickName=xxx (例如：?pickName=多賢)
-        url: googleScriptUrl + "?pickName=" + encodeURIComponent(selectedName) + "&round=" + currentVoteRound,
+        url: googleScriptUrl + "?pickName=" + encodeURIComponent(selectedName) + "&round=" + currentVoteRound + "&randonNo=" + randon_no,
         type: "GET",
         success: function(response) {
             // 傳送成功後，關閉 Modal，並跳轉到證書頁面
